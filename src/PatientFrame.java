@@ -14,14 +14,14 @@ public class PatientFrame extends JFrame implements ActionListener
    private JLabel patForenameLabel=new JLabel("Forename");
    private JLabel patSurnameLabel=new JLabel("Surname");
    private JLabel patDOBLabel=new JLabel("Date of birth");
-   private JLabel patSpecLabel=new JLabel("Speciality");
+   private JLabel patgenderLabel=new JLabel("Gender");
    private JTextField forenameField=new JTextField();
    private JTextField surnameField=new JTextField();
    private JTextField dateOfBirthField=new JTextField();
-   private JTextField specialityField=new JTextField();
+   private JTextField genderField=new JTextField();
    private JButton addButton=new JButton("ADD");
    private JButton resetButton=new JButton("RESET");
-   private JLabel titleLabel=new JLabel("Doctor registation form");
+   private JLabel titleLabel=new JLabel("Patient registation form");
     
     PatientFrame()
     {
