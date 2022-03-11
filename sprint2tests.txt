@@ -1,0 +1,51 @@
+The system should allow an admin/receptionist to enter a new patient by providing their details,
+e.g. name, phone number, and assign a doctor to the patient using the list of all doctors. The system
+should then send confirmation messages to the patient and the doctor.
+
+Test Performed: Admin attempts to add patient with all detials valid
+Expected Results: Patient successfully added to database with message to say patient added
+Actual Results: As Expected
+Comment/Improvement: 
+
+Test Performed: Attempting to add patient to database with empty fields
+Expected Results: Patient not added to database message saying patient not added
+Actual Results: As Expected
+Comment/Improvement: Message for which fields have been left empty
+
+Test Performed: Attempting to add patient to database with incorrect data in field
+Expected Results: Patient not added to database message saying patient not added
+Actual Results: As Expected
+Comment/Improvement: Potential to add which fields have invalid data
+
+Test Performed: Attempting to add patient to database that is already in database
+Expected Results: Patient not added to database message saying patient already in database
+Actual Results: As Expected
+Comment/Improvement:
+
+
+The system should allow an admin/receptionist to change a patient’s doctor using the lists of all
+patients and doctors. The system should then send confirmation messages to the patient and the
+doctor.
+
+Test Performed: Attempting to change a patients Doctor with valid patient and doctor.
+Expected Results: System allows receptionist to make the change
+Actual Results: As Expected
+Comment/Improvement: Message is sent to confirm change has occured
+
+Test Performed: Attempting to change a patients Doctor to a invalid Doctor
+Expected Results: System does not allow receptionist to make change
+Actual Results: As Expected 
+Comment/Improvement: Could add message saying doctor is not valid
+
+Test Performed: Attempting to change a patients Doctor when patient doesn't exist
+Expected Results: Option to change doctor should no appear as no doctor should be registered 
+Actual Results: As Expected
+Comment/Improvement: No error message needed as button to change is not available
+
+Test Performed: Attempting to change a patients Doctor to the same Doctor
+Expected Results: Doctor remains same 
+Actual Results: As Expected
+Comment/Improvement: Doctor is technically changed but no change is noticed.
+
+
+
