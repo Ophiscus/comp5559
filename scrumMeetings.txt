@@ -1,0 +1,79 @@
+Scrum stand-up meeting 1 (Discord Call): 17/02/2022
+Jack Fermer:
+Planned up the structure for the database to enter a new doctor, new patient, bookings, and receptionist. (Main keys, foreign keys and database structure)
+Kurt Santos:
+Planned out the scrum meeting and who’s going to be doing what and helped Jack plan up the databases by giving ideas on how it could be structured.
+Joel Kimani:
+Sketched out possible looks and structure of the Java GUI for the log in page, logging page, new doctor page, and a new patient page.
+Syed Ahmed:
+Helped Joel with the sketches by giving feedbacks and also sketching out possible looks for the pages.
+	
+Scrum stand-up meeting 2 (Discord Call): 22/02/2022
+Jack Fermer:
+Created the SQL for the databases for new doctor, and new patient.
+Kurt Santos:
+Helped create the SQL for the databases.
+Joel Kimani:
+Created Login form GUI using java and created git repository to upload Login form GUI.
+Syed Ahmed:
+Helped Joel create Login form GUI using java and help create git repository.
+
+Scrum stand-up meeting 3 (Discord Call): 23/02/2022
+Jack Fermer:
+Created diagram for the SQL database for easier reference.
+Kurt Santos:
+Made progress with SQL database including receptionist login information (username and password).
+Joel Kimani:
+Created a new doctor form GUI using java.
+Syed Ahmed:
+Created Test documentation.
+
+Scrum stand-up meeting 4 (Discord Call): 25/02/2022
+Jack Fermer:
+Created doctor form test documentation with test performed and expected results.
+Kurt Santos:
+Tested log in form with actual results and comments on how to improve.
+Joel Kimani:
+Completed the new doctor form GUI using java.
+Syed Ahmed:
+Attempted to link SQL database to the Log in form and committed test documentation.
+
+Scrum stand-up meeting 5 (Discord Call): 02/03/2022
+Jack Fermer:
+Planned scrum meetings and helped look over functionalities to add.
+Kurt Santos:
+Furthered work on the implementation for the database.
+Joel Kimani:
+Finished log in function and planned to start on ability to enter patients. 
+Syed Ahmed:
+Looked over and allocated functionalities to be added for sprint two.
+
+Scrum stand-up meeting 6 (Discord Call): 05/03/2022
+Jack Fermer:
+Planned best ways to implement booking functionality.
+Kurt Santos:
+Began implementing functionality for making bookings.
+Joel Kimani:
+Implemented functionality to add patient to database.
+Syed Ahmed:
+Began planning tests for sprint two and helped with functionality implementation.
+
+Scrum stand-up meeting 7 (Discord Call): 09/03/2022
+Jack Fermer:
+Helped with functionality for arranging bookings and checking availability. 
+Kurt Santos:
+Began work on functionality for admins to change patients doctors.
+Joel Kimani:
+Finished bookings functionality and helped with changing patients doctors function.
+Syed Ahmed:
+Tested code and began documenting results
+
+Scrum stand-up meeting 8 (Discord Call): 11/03/2022
+Jack Fermer:
+Documented Scrum meetings for sprint two.
+Kurt Santos:
+Finished work for patients and bookings SQL.
+Joel Kimani:
+Helped improve SQL and finished connecting booking table to database.
+Syed Ahmed:
+Finished documenting test results.
