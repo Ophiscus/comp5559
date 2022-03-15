@@ -2,9 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
- 
+import java.sql.*;
+import java.util.ArrayList;
+
 public class LoginFrame extends JFrame implements ActionListener {
- 
+
+    ArrayList <String> userName= new ArrayList<>();
+    ArrayList <String> password= new ArrayList<>();
+
     Container container=getContentPane();
     JLabel userLabel=new JLabel("USERNAME");
     JLabel passwordLabel=new JLabel("PASSWORD");
@@ -21,6 +26,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
+        sql();
     }
  
      public void setLayoutManager()
@@ -68,14 +74,30 @@ public class LoginFrame extends JFrame implements ActionListener {
          if (e.getSource() == loginButton) {
             String userText;
             String pwdText;
+            Boolean answer = true;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("mehtab") && pwdText.equalsIgnoreCase("12345")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+            for(int i = 0; i < userName.size(); i++)
+            {
+                String name = userName.get(i);
+                String pass = password.get(i);
+                if (userText.equalsIgnoreCase(name) && pwdText.equalsIgnoreCase(pass)) {
+                    JOptionPane.showMessageDialog(this, "Login Successful");
+                    ConnectorFrame jframe=new ConnectorFrame();
+                    jframe.setTitle("Login Form");
+                    jframe.setVisible(true);
+                    jframe.setBounds(10,10,370,600);
+                    jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    jframe.setResizable(true);
+                    break;
+                } else {
+                    answer = false;
+                }
             }
- 
+           if (answer == false)
+           {
+               JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+           }
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
@@ -91,6 +113,24 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
  
  
+        }
+    }
+
+    public void sql()
+    {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from c0559.co559_receptionists");
+            while (resultSet.next())
+            {
+                userName.add(resultSet.getString("receptionistUsername"));
+                password.add(resultSet.getString("receptionistPassword"));
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
