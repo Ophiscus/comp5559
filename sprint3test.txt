@@ -1,0 +1,72 @@
+The system should allow an admin/receptionist to arrange a booking for a patient (selected from
+the list of all patients) with their doctor by entering the date and time. If the doctor is not available
+for the chosen date and time, the system should warn the admin/receptionist. Otherwise, the system
+should then send confirmation messages to the patient and the doctor
+
+Test Performed: Arranging a booking for a patient with doctor that is available.
+Expected Results: As the doctor is available, the booking should be set and no warning has should be given.
+Actual Results: As expected.
+Comment/Improvement:
+
+Test Performed: Arranging a booking for a patient with a doctor that is unavailable.
+Expected Results: As the doctor is unavailable, the booking should not be set and approved and a warning message should be given to the receptionist that the doctor is unavailable for this time.
+Actual Results: As expected.
+Comment/Improvement:
+
+Test Performed: Arranging a booking for a patient but with a doctor that does not exists.
+Expected Results: As the doctor is not part of the doctors database list, this booking should not be allowed and be warned that this doctor does not exist.
+Actual Results: As expected.
+Comment/Improvement: SQL did not allow this because of keys.
+
+Test Performed: Arranging a booking for a patient number that does not exist to an available doctor.
+Expected Results: This booking should not be allowed to be arranged as this patient does not exist and a warning message should be sent to the receptionist.
+Actual Results: As expected.
+Comment/Improvement: SQL did not allow this because a patient does not exist within the Select function therefore could not making a booking.
+
+The system should allow an admin/receptionist to view bookings by selecting a doctor from the list
+of all doctors, by selecting a patient from the list of all patients, or by entering a month and year.
+
+Test Performed: Selecting a doctor from the database that exist and has a booking set.
+Expected Results: Because the doctor exist from the database and has a booking set, the booking should be viewable by the receptionist.
+Actual Results: As Expected
+Comment/Improvement:
+
+Test Performed: Selecting a patient from the database that exist and has a booking set.
+Expected Results: Because the patient exist from the database and has a booking set, the booking should be viewable by the receptionist.
+Actual Results: As expected
+Comment/Improvement:
+
+Test Performed: Selecting a month and year from the database that has a booking set.
+Expected Results: Because there is a booking set on this month and year, the booking should be viewable by the receptionist.
+Actual Results: As Expected.
+Comment/Improvement:
+
+Test Performed: Selecting a patient/doctor/month that does not have a booking set.
+Expected Results: Because the selection does not have a booking set, an error message or a warning message should be sent through GUI that there is no existing booking set for that patient/doctor/month.
+Actual Results: As expected.
+Comment/Improvement:
+
+The system should allow an admin/receptionist to remove or reschedule a booking. If the doctor is
+not available for the chosen date and time (in case of a rescheduling), the system should warn the
+admin/receptionist. Otherwise, the system should then send confirmation messages to the patient
+and the doctor.
+
+Test Performed: Removing a booking that exist in the database.
+Expected Results: The booking should be removed with a confirmation message that the booking has been removed.
+Actual Results: As expected.
+Comment/Improvement:
+
+Test Performed: Rescheduling a booking that exist in the database to a date and time that is available for a doctor.
+Expected Results: The booking should be able to be rescheduled to another date and time.
+Actual Results: As expected.
+Comment/Improvement:
+
+Test Performed: Rescheduling a booking that does not exist.
+Expected Results: This should not be able to be reschedule because the booking does not exist and should have a message that a booking does not exist.
+Actual Results: As expected.
+Comment/Improvement:
+
+Test Performed: Rescheduling a booking that exist to a date and time that is not available for a doctor.
+Expected Results: This should not be able to be reschedule as the doctor is not unavailable at this time and should have a message that the booking is not possible because of the circumstances.
+Actual Results: As expected.
+Comment/Improvement:
