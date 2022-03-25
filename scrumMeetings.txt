@@ -77,3 +77,43 @@ Joel Kimani:
 Helped improve SQL and finished connecting booking table to database.
 Syed Ahmed:
 Finished documenting test results.
+
+Scrum stand-up meeting 9 (Seminar): 14/03/2022
+Jack Fermer: 
+Absent
+Kurt Santos: 
+Continuing with SQL queries for the GUI
+Joel Kimani:
+Continuing on the GUI improvement along with SQL queries
+Syed Ahmed:
+Absent
+
+Scrum stand-up meeting 10 (Discord Call): 15/03/2022
+Jack Fermer:
+Started Test files for Sprint 3
+Kurt Santos
+Improving SQL queries for better efficiency
+Joel Kimani
+Improving on SQL queries for the GUI (validation and messages)
+Syed Ahmed:
+Scrum meeting documentation
+
+Scrum stand-up meeting 11 (Discord Call): 23/03/2022
+Jack Fermer:
+Next tests for the test file for sprint 3
+Kurt Santos
+Finishing up SQL queries to suit the test files needs.
+Joel Kimani:
+Improving GUI further to meet expected results for testing.
+Syed Ahmed:
+Suggested improvement for documents and clean up documents.
+
+Scrum stand-up meeting 12 (Discord Call): 15/03/2022
+Jack Fermer:
+Finishing up final tests for sprint 3
+Kurt Santos:
+Finishing up necessary documents and improvement of other documents such as the test files and scrum file
+Joel Kimani:
+Last improvements for the GUI and the Queries for the final testing
+Syed Ahmed:
+Final scrum meeting documentations.
