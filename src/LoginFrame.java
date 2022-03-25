@@ -18,7 +18,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JButton loginButton=new JButton("LOGIN");
     JButton resetButton=new JButton("RESET");
     JCheckBox showPassword=new JCheckBox("Show Password");
-    
+
     LoginFrame()
     {
         //Calling setLayoutManger() method inside the constructor.
@@ -28,13 +28,13 @@ public class LoginFrame extends JFrame implements ActionListener {
         addActionEvent();
         sql();
     }
- 
+
      public void setLayoutManager()
     {
        //Setting layout manager of Container to null
        container.setLayout(null);
     }
-   
+
     public void setLocationAndSize()
    {
        //Setting location and Size of each components using setBounds() method.
@@ -45,10 +45,10 @@ public class LoginFrame extends JFrame implements ActionListener {
        showPassword.setBounds(150,250,150,30);
        loginButton.setBounds(50,300,100,30);
        resetButton.setBounds(200,300,100,30);
- 
- 
+
+
    }
-   
+
    public void addComponentsToContainer()
    {
       //Adding each components to the Container
@@ -60,7 +60,7 @@ public class LoginFrame extends JFrame implements ActionListener {
        container.add(loginButton);
        container.add(resetButton);
    }
-   
+
    public void addActionEvent()
    {
       //adding Action listener to components
@@ -68,7 +68,7 @@ public class LoginFrame extends JFrame implements ActionListener {
        resetButton.addActionListener(this);
        showPassword.addActionListener(this);
    }
-   
+
     @Override
     public void actionPerformed(ActionEvent e) {
          if (e.getSource() == loginButton) {
@@ -84,11 +84,13 @@ public class LoginFrame extends JFrame implements ActionListener {
                 if (userText.equalsIgnoreCase(name) && pwdText.equalsIgnoreCase(pass)) {
                     JOptionPane.showMessageDialog(this, "Login Successful");
                     ConnectorFrame jframe=new ConnectorFrame();
-                    jframe.setTitle("Login Form");
+                    jframe.setTitle("Connector Form");
                     jframe.setVisible(true);
                     jframe.setBounds(10,10,370,600);
                     jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     jframe.setResizable(true);
+                    setVisible(false); //you can't see me!
+                    dispose();
                     break;
                 } else {
                     answer = false;
@@ -98,6 +100,7 @@ public class LoginFrame extends JFrame implements ActionListener {
            {
                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
            }
+
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
@@ -111,8 +114,8 @@ public class LoginFrame extends JFrame implements ActionListener {
             } else {
                 passwordField.setEchoChar('*');
             }
- 
- 
+
+
         }
     }
 
@@ -121,7 +124,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from c0559.co559_receptionists");
+            ResultSet resultSet = statement.executeQuery("select * from c0559.receptionists");
             while (resultSet.next())
             {
                 userName.add(resultSet.getString("receptionistUsername"));
