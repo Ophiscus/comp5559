@@ -2,28 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class BookingForm extends JFrame implements ActionListener {
- 
+
     Container container=getContentPane();
     JLabel userLabel=new JLabel("patientID");
-    JList<String> patientList = new JList();
     JTextField patientField=new JTextField();
-    JLabel timeLabel=new JLabel("booking time");
-    JTextField timeField=new JTextField();
     JLabel doctorLabel=new JLabel("Doctor ID");
     JTextField doctorField=new JTextField();
-    JLabel dateLabel=new JLabel("Booking date");
+    JLabel dateLabel=new JLabel("Booking date (yyyy-MM-dd)");
     JTextField bookingDateField=new JTextField();
     JLabel reasonLabel=new JLabel("Booking reason");
     JTextField reasonField=new JTextField();
     JButton submitButton=new JButton("Submit");
     JButton cancelButton=new JButton("cancel");
     JLabel formLabel = new JLabel("Booking Form");
+    JButton editButton = new JButton("edit");
 
     
     BookingForm()
@@ -44,19 +40,17 @@ public class BookingForm extends JFrame implements ActionListener {
    {
        //Setting location and Size of each components using setBounds() method.
        userLabel.setBounds(50,150,100,30);
-       patientField.setBounds(150,150,150,30);
+       patientField.setBounds(250,150,150,30);
        doctorLabel.setBounds(50,220,100,30);
-       doctorField.setBounds(150,220,150,30);
-       dateLabel.setBounds(50,270,100,30);
-       bookingDateField.setBounds(150, 270,150, 30);
-       timeLabel.setBounds(50,320,100,30);
-       timeField.setBounds(150,320,150,30);
-       reasonLabel.setBounds(50,370,100,30);
-       reasonField.setBounds(150,370,150,100);
-       submitButton.setBounds(50,500,100,30);
-       cancelButton.setBounds(200,500,100,30);
+       doctorField.setBounds(250,220,150,30);
+       dateLabel.setBounds(50,270,150,30);
+       bookingDateField.setBounds(250, 270,150, 30);
+       reasonLabel.setBounds(50,320,100,30);
+       reasonField.setBounds(250,320,150,100);
+       submitButton.setBounds(15,500,85,30);
+       cancelButton.setBounds(115,500,85,30);
        formLabel.setBounds(125,70, 100, 50);  
- 
+        editButton.setBounds(215,500,85,30);
    }
    
    public void addComponentsToContainer()
@@ -67,15 +61,13 @@ public class BookingForm extends JFrame implements ActionListener {
        container.add(doctorLabel);
        container.add(doctorField);
        container.add(dateLabel);
-       container.add(bookingDateField);
-       container.add(timeLabel);
-       container.add(timeField);
+       container.add(bookingDateField);;
        container.add(reasonLabel);
        container.add(reasonField);
        container.add(submitButton);
        container.add(cancelButton);
-       container.add(patientList);
        container.add(formLabel);
+       container.add(editButton);
    }
    
    public void addActionEvent()
@@ -83,37 +75,52 @@ public class BookingForm extends JFrame implements ActionListener {
       //adding Action listener to components
        submitButton.addActionListener(this);
        cancelButton.addActionListener(this);
+       editButton.addActionListener(this);
    }
    
     @Override
     public void actionPerformed(ActionEvent e) {
          if (e.getSource() == submitButton) {
-            String userText;
-            String pwdText;
-            userText = timeField.getText();
+            int doctorID = Integer.parseInt(doctorField.getText());
+            int patientID = Integer.parseInt(patientField.getText());
+            Date bookingDate= Date.valueOf(bookingDateField.getText());
+            String bookingReason = reasonField.getText();
+             try {
+                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
+                 PreparedStatement stmt= connection.prepareStatement("INSERT INTO c0559.booking(doctorID, patientID, bookingDate, bookingReason) VALUES(?,?,?,?)");
+                 stmt.setInt(1,doctorID);
+                 stmt.setInt(2,patientID);
+                 stmt.setDate(3, bookingDate);
+                 stmt.setString(4,bookingReason);
+                 stmt.executeUpdate();
+                 JOptionPane.showMessageDialog(this, " Successful");
+             }
+             catch(Exception f)
+             {
+                 f.printStackTrace();
+                 JOptionPane.showMessageDialog(this, "Invalid entry. Please re-check details entered");
+             }
  
         }
         //Coding Part of RESET button
         if (e.getSource() == cancelButton) {
-            timeField.setText("");
+            bookingDateField.setText("");
+            patientField.setText("");
+            doctorField.setText("");
+            reasonField.setText("");
+        }
+
+        if(e.getSource() == editButton){
+            JOptionPane.showMessageDialog(this, "Login Successful");
+            EditBookingFrame jframe = new EditBookingFrame();
+            jframe.setTitle("Edit Form");
+            jframe.setVisible(true);
+            jframe.setBounds(10,10,470,600);
+            jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            jframe.setResizable(true);
+            setVisible(false); //you can't see me!
+            dispose();
         }
        //Coding Part of showPassword JCheckBox
-    }
-
-    public void sql()
-    {
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from c0559.co559_receptionists");
-            while (resultSet.next())
-            {
-
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 }
