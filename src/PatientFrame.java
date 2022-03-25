@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Write a description of class DoctorFrame here.
@@ -18,7 +15,7 @@ public class PatientFrame extends JFrame implements ActionListener
    private Container container= getContentPane();
    private JLabel patForenameLabel=new JLabel("Forename");
    private JLabel patSurnameLabel=new JLabel("Surname");
-   private JLabel patDOBLabel=new JLabel("Date of birth");
+   private JLabel patDOBLabel=new JLabel("Date of birth (yyyy-MM-dd)");
    private JLabel patSpecLabel=new JLabel("gender");
    private JLabel patPhoneNumberLabel=new JLabel("Phone Number");
    private JTextField forenameField=new JTextField();
@@ -47,15 +44,15 @@ public class PatientFrame extends JFrame implements ActionListener
         //Setting location and Size of each components using setBounds() method.
     	titleLabel.setBounds(100,30,150,60);
         patForenameLabel.setBounds(50,100,100,30);
-        forenameField.setBounds(150,100,150,30);
+        forenameField.setBounds(250,100,150,30);
         patSurnameLabel.setBounds(50,150,100,30);
-        surnameField.setBounds(150,150,150,30);
+        surnameField.setBounds(250,150,150,30);
         patSpecLabel.setBounds(50,200,100,30);
-        specialityField.setBounds(150,200,150,30);
+        specialityField.setBounds(250,200,150,30);
         patPhoneNumberLabel.setBounds(50,250,100,30);
-        phoneNumberField.setBounds(150,250,150,30);
-        patDOBLabel.setBounds(50,300,100,30);
-        dateOfBirthField.setBounds(150,300, 150,30);
+        phoneNumberField.setBounds(250,250,150,30);
+        patDOBLabel.setBounds(50,300,150,30);
+        dateOfBirthField.setBounds(250,300, 150,30);
         addButton.setBounds(50,500,100,30);
         resetButton.setBounds(200,500,100,30);
     }
@@ -99,25 +96,23 @@ public class PatientFrame extends JFrame implements ActionListener
              String patientGender = specialityField.getText();
              String patientPhoneNumber = phoneNumberField.getText();
              String patientDoB = dateOfBirthField.getText();
+             try {
+                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
+                 PreparedStatement stmt= connection.prepareStatement("INSERT INTO c0559.patient(patientForename, patientSurname, patientGender, patientPhoneNumber, patientDoB) VALUES(?,?,?,?,?)");
+                 stmt.setString(1,patientForename);
+                 stmt.setString(2,patientSurname);
+                 stmt.setString(3,patientGender);
+                 stmt.setDate(5, Date.valueOf(patientDoB));
+                 stmt.setString(4,patientPhoneNumber);
+                 stmt.executeUpdate();
+                 JOptionPane.showMessageDialog(this, "Successful");
+             }
+             catch(Exception f)
+             {
+                 f.printStackTrace();
+                 JOptionPane.showMessageDialog(this, "Invalid entry. Please re-check details entered");
+             }
          }
-    }
-
-
-    public void sql()
-    {
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/c0559", "root", "Dark Shadow");
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from c0559.co559_receptionists");
-            while (resultSet.next())
-            {
-
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 }
 
